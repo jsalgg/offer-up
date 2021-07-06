@@ -6,9 +6,12 @@ class User(db.Model, UserMixin):
   __tablename__ = 'users'
 
   id = db.Column(db.Integer, primary_key = True)
-  username = db.Column(db.String(40), nullable = False, unique = True)
+  name = db.Column(db.String(255), nullable = False)
   email = db.Column(db.String(255), nullable = False, unique = True)
   hashed_password = db.Column(db.String(255), nullable = False)
+  location = db.Column(db.String(255))
+  profile_image = db.Column(db.String(255))
+  joined_date = db.Column(db.DateTime)
 
 
   @property
@@ -28,6 +31,9 @@ class User(db.Model, UserMixin):
   def to_dict(self):
     return {
       "id": self.id,
-      "username": self.username,
-      "email": self.email
+      "name": self.name,
+      "email": self.email,
+      "location": self.location,
+      "profile_image": self.profile_image,
+      "joined_date": self.joined_date
     }
