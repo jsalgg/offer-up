@@ -65,7 +65,7 @@ function App() {
           <EditItem />
         </ProtectedRoute>
         <Route path="*">
-          <h1>404, sorry bud!</h1>
+          <h1>404, sorry b . ud!</h1>
         </Route>
       </Switch>
     </BrowserRouter>
