@@ -9,6 +9,10 @@ import UsersList from "./components/UsersList";
 import User from "./components/User";
 import { authenticate } from "./store/session";
 import NewItem from "./components/Forms/NewItem";
+import Item from "./components/Item";
+import ItemAll from "./components/ItemAll";
+import EditItem from "./components/Forms/EditItem";
+import DeleteItem from "./components/Forms/DeleteItem";
 import "./index.css";
 function App() {
   const user = useSelector((state) => state.session.user);
@@ -45,9 +49,24 @@ function App() {
         <ProtectedRoute path="/" exact={true}>
           <h1>My Home Page</h1>
         </ProtectedRoute>
+        <Route path="/item/all/" exact={true}>
+          <ItemAll />
+        </Route>
         <ProtectedRoute path="/item/new" exact={true}>
           <NewItem />
         </ProtectedRoute>
+        <Route path="/item/:id" exact={true}>
+          <Item />
+        </Route>
+        <Route path="/item/:id/delete" exact={true}>
+          <DeleteItem />
+        </Route>
+        <ProtectedRoute path="/item/:id/edit" exact={true}>
+          <EditItem />
+        </ProtectedRoute>
+        <Route path="*">
+          <h1>404, sorry bud!</h1>
+        </Route>
       </Switch>
     </BrowserRouter>
   );

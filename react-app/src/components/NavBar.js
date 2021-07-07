@@ -17,6 +17,9 @@ const NavBar = () => {
             <NavLink to="/item/new">Sell an Item</NavLink>
           </li>
           <li>
+            <NavLink to="/item/all">View all Items</NavLink>
+          </li>
+          <li>
             <LogoutButton />
           </li>
         </ul>
