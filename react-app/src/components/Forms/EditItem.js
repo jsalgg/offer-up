@@ -5,31 +5,32 @@ import { useEffect } from "react";
 import { getItem } from "../../store/item";
 import DeleteItem from "./DeleteItem";
 import { editItem } from "../../store/item";
-
 const EditItem = () => {
+  const { id } = useParams();
+  console.log(id);
   const user = useSelector((state) => state.session.user);
-  const item = useSelector((state) => state.item.item);
+  const item = useSelector((state) => state.item[id]);
+  console.log(item);
   const history = useHistory();
-  const [name, setName] = useState(item.name);
-  const [type, setType] = useState(item.type);
-  const [price, setPrice] = useState(item.price);
-  const [postedOn, setPostedOn] = useState(new Date());
+  const [name, setName] = useState();
+  const [type, setType] = useState();
+  const [price, setPrice] = useState();
+  const [postedOn, setPostedOn] = useState();
   const [ownerId, setOwnerId] = useState(user.id);
-  const [description, setDescription] = useState(item.description);
+  const [description, setDescription] = useState();
   const [location, setLocation] = useState(user.location);
   const dispatch = useDispatch();
-  const { id } = useParams();
   useEffect(() => {
     dispatch(getItem(id));
   }, []);
   useEffect(() => {
-    setName(item.name);
-    setType(item.type);
-    setPrice(item.price);
+    setName(item ? item.name : "");
+    setType(item ? item.type : "");
+    setPrice(item ? item.price : "");
     setPostedOn(new Date());
-    setOwnerId(item.owner_id);
-    setDescription(item.description);
-    setLocation(item.location);
+    setOwnerId(item ? item.owner_id : "");
+    setDescription(item ? item.description : "");
+    setLocation(item ? item.location : "");
   }, [item]);
 
   const onSubmit = async (e) => {

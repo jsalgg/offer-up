@@ -5,12 +5,12 @@ import { getItem } from "../store/item";
 
 export default function Item({ item }) {
   const dispatch = useDispatch();
-  const loadedItem = useSelector((state) => state.item.item);
+  let { id } = useParams();
+  const loadedItem = useSelector((state) => state.item[id]);
   const user = useSelector((state) => state.session.user);
 
   const history = useHistory();
   let itemState;
-  let { id } = useParams();
   if (!item) {
     itemState = loadedItem;
   } else {

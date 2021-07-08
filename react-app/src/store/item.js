@@ -1,9 +1,14 @@
 const SET_ITEM = "items/SET_ITEM";
 const REMOVE_ITEM = "items/REMOVE_ITEM";
-
+const SET_ALL = "items/SET_ALL";
 const setItemDispatch = (item) => ({
   type: SET_ITEM,
   payload: item,
+});
+
+const setItemsDispatch = (items) => ({
+  type: SET_ALL,
+  payload: items,
 });
 
 const deleteItemDispatch = (item) => ({
@@ -27,7 +32,7 @@ export const getItemAll = () => async (dispatch) => {
   if (data.errors) {
     return data;
   }
-  dispatch(setItemDispatch(data));
+  dispatch(setItemsDispatch(data));
   return {};
 };
 
@@ -102,14 +107,16 @@ export const editItem =
     dispatch(setItemDispatch(data));
     return {};
   };
-const initialState = { item: {} };
+const initialState = {};
 
 export default function reducer(state = initialState, action) {
   switch (action.type) {
     case SET_ITEM:
-      return { item: action.payload };
+      return { ...state, [action.payload.id]: action.payload };
+    case SET_ALL:
+      return { ...state, ...action.payload };
     case REMOVE_ITEM:
-      return { item: null };
+      return { ...state };
     default:
       return state;
   }

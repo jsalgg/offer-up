@@ -3,9 +3,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams, Link } from "react-router-dom";
 import { getItemAll } from "../store/item";
 import Item from "./Item";
-
+import EditItem from "./Forms/EditItem";
 export default function ItemAll() {
-  const item = useSelector((state) => state.item.item);
+  const item = useSelector((state) => Object.values(state.item));
   const dispatch = useDispatch();
   const history = useHistory();
   useEffect(() => {
@@ -15,16 +15,16 @@ export default function ItemAll() {
   return (
     <div>
       <h2> All Items:</h2>
-
-      {Object.entries(item).map((i) => {
-        return (
-          <>
-            <Link to={`/item/${i[0]}`}>
-              <Item item={i[1]} />
-            </Link>
-          </>
-        );
-      })}
+      {item.length > 0 &&
+        item.map((i) => {
+          return (
+            <>
+              <Link to={`/item/${i.id}`}>
+                <Item item={i} />
+              </Link>
+            </>
+          );
+        })}
     </div>
   );
 }
