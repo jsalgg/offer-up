@@ -13,6 +13,7 @@ import Item from "./components/Item";
 import ItemAll from "./components/ItemAll";
 import EditItem from "./components/Forms/EditItem";
 import DeleteItem from "./components/Forms/DeleteItem";
+import Chat from "./components/Chat";
 import "./index.css";
 function App() {
   const user = useSelector((state) => state.session.user);
@@ -34,6 +35,9 @@ function App() {
     <BrowserRouter>
       <NavBar />
       <Switch>
+        <Route path="/chat">
+          <Chat />
+        </Route>
         <Route path="/login" exact={true}>
           <LoginForm />
         </Route>

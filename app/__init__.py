@@ -4,7 +4,7 @@ from flask_cors import CORS
 from flask_migrate import Migrate
 from flask_wtf.csrf import CSRFProtect, generate_csrf
 from flask_login import LoginManager
-
+from .socket import socketio
 from .models import db, User
 from .api.user_routes import user_routes
 from .api.auth_routes import auth_routes
@@ -13,6 +13,8 @@ from .api.item_routes import item_routes
 from .seeds import seed_commands
 
 from .config import Config
+
+
 
 app = Flask(__name__)
 
@@ -35,6 +37,8 @@ app.register_blueprint(auth_routes, url_prefix='/api/auth')
 app.register_blueprint(item_routes, url_prefix='/api/item')
 db.init_app(app)
 Migrate(app, db)
+# initialize the app with the socket instance
+socketio.init_app(app)
 
 # Application Security
 CORS(app)
@@ -73,3 +77,7 @@ def react_root(path):
     if path == 'favicon.ico':
         return app.send_static_file('favicon.ico')
     return app.send_static_file('index.html')
+
+
+if __name__ == '__main__':
+    socketio.run(app)
