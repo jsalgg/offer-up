@@ -71,7 +71,13 @@ export default function Item({ item }) {
             )}
             {user.id !== itemState.owner_id && (
               <>
-                <button onClick={toChat}> Send Message</button>
+                <button
+                  className="m-2 bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
+                  onClick={toChat}
+                >
+                  {" "}
+                  Send Message
+                </button>
               </>
             )}
           </div>
