@@ -14,7 +14,10 @@ import ItemAll from "./components/ItemAll";
 import EditItem from "./components/Forms/EditItem";
 import DeleteItem from "./components/Forms/DeleteItem";
 import Chat from "./components/Chat";
+import Home from "./components/Home";
 import "./index.css";
+import "./styles/output.css";
+
 function App() {
   const user = useSelector((state) => state.session.user);
   const [loaded, setLoaded] = useState(false);
@@ -35,9 +38,6 @@ function App() {
     <BrowserRouter>
       <NavBar />
       <Switch>
-        <Route path="/chat">
-          <Chat />
-        </Route>
         <Route path="/login" exact={true}>
           <LoginForm />
         </Route>
@@ -51,7 +51,7 @@ function App() {
           <User />
         </ProtectedRoute>
         <ProtectedRoute path="/" exact={true}>
-          <h1>My Home Page</h1>
+          <Home />
         </ProtectedRoute>
         <Route path="/item/all/" exact={true}>
           <ItemAll />
@@ -61,6 +61,9 @@ function App() {
         </ProtectedRoute>
         <Route path="/item/:id" exact={true}>
           <Item />
+        </Route>
+        <Route path="/item/:id/chat">
+          <Chat />
         </Route>
         <Route path="/item/:id/delete" exact={true}>
           <DeleteItem />

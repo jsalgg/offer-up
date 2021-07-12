@@ -15,16 +15,18 @@ export default function ItemAll() {
   return (
     <div>
       <h2> All Items:</h2>
-      {item.length > 0 &&
-        item.map((i) => {
-          return (
-            <>
-              <Link to={`/item/${i.id}`}>
-                <Item item={i} />
-              </Link>
-            </>
-          );
-        })}
+      <div className="flex flex-wrap">
+        {item.length > 0 &&
+          item.map((i) => {
+            return (
+              <>
+                <Link to={`/item/${i.id}`}>
+                  <Item item={i} />
+                </Link>
+              </>
+            );
+          })}
+      </div>
     </div>
   );
 }

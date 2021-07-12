@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams, Link } from "react-router-dom";
 import { getItem } from "../store/item";
+import { startChat } from "../store/chat";
 
 export default function Item({ item }) {
   const dispatch = useDispatch();
@@ -21,19 +22,63 @@ export default function Item({ item }) {
   useEffect(() => {
     dispatch(getItem(id));
   }, []);
+
   const toEdit = () => {
     history.push(`/item/${id}/edit`);
   };
+  const toChat = () => {
+    dispatch(startChat(user.name, itemState.id));
+    history.push(`/item/${id}/chat`);
+  };
   return (
-    <div>
-      <h2>{itemState.name}</h2>
-      <p>{itemState.description}</p>
-      <p>${itemState.price}</p>
-      <p>posted on: {itemState.posted_on}</p>
-      <p>Located in {itemState.location}</p>
-      {user.id === itemState.owner_id && (
-        <button onClick={toEdit}> Edit</button>
-      )}
+    <div className="p-6">
+      <div className="border-solid border-4 border-green-500 py-4 px-8 bg-white shadow-lg rounded-lg ">
+        <div>
+          <h2 className="text-gray-800 text-3xl font-semibold">
+            {itemState.name}
+          </h2>
+          <p className="mt-2 text-gray-600">{itemState.location}</p>
+          {id && (
+            <>
+              <p className="mt-2 text-gray-600">{itemState.description}</p>
+              <p className="mt-2 text-gray-600">
+                Posted On: {itemState.posted_on}
+              </p>
+            </>
+          )}
+        </div>
+        <div className="flex justify-end mt-4">
+          <p className="text-xl font-medium text-indigo-500">
+            ${itemState.price}
+          </p>
+          <br></br>
+          <div className="flex justify-start mt-4">
+            {user.id === itemState.owner_id && (
+              <>
+                <button
+                  onClick={toEdit}
+                  className="bg-transparent hover:bg-green-500 text-black font-semibold hover:text-white py-2 px-4 border border-green-500 hover:border-transparent rounded"
+                >
+                  {" "}
+                  Edit
+                </button>
+                <button
+                  onClick={toChat}
+                  className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
+                >
+                  {" "}
+                  See Messages{" "}
+                </button>
+              </>
+            )}
+            {user.id !== itemState.owner_id && (
+              <>
+                <button onClick={toChat}> Send Message</button>
+              </>
+            )}
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
