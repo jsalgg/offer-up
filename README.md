@@ -2,7 +2,7 @@
 
 ## Live link: 
 
-OfferDown, inspired by [Offer Up](https://offerup.com/), is a web application that allows users to buy goods from other users in their area! 
+[OfferDown](https://offerdown.herokuapp.com/), inspired by [Offer Up](https://offerup.com/), is a web application that allows users to buy goods from other users in their area! 
 
 # 
 ## Table of content
@@ -34,10 +34,9 @@ OfferDown, inspired by [Offer Up](https://offerup.com/), is a web application th
 ## Key Features 
 * Post items for sale
 * Send messages to user about items
-* Add reviews to user
+* Filter Items by Categories
 
 #
-## Code Snippets
 ** **
 
 
