@@ -64,7 +64,7 @@ const NewItem = () => {
           <option value="Toys, Games, and Hobbies">
             Toys, Games, and Hobbies
           </option>
-          <option value="Sports and Outdoors">Baby and Kids</option>
+          <option value="Sports and Outdoors">Sports and Outdoors</option>
           <option value="Collectibles and Art">Collectibles and Art</option>
         </select>
       </div>
