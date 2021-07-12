@@ -15,6 +15,7 @@ import EditItem from "./components/Forms/EditItem";
 import DeleteItem from "./components/Forms/DeleteItem";
 import Chat from "./components/Chat";
 import Home from "./components/Home";
+import ItemFilter from "./components/ItemFilter";
 import "./index.css";
 import "./styles/output.css";
 
@@ -37,6 +38,7 @@ function App() {
   return (
     <BrowserRouter>
       <NavBar />
+      <Home />
       <Switch>
         <Route path="/login" exact={true}>
           <LoginForm />
@@ -51,8 +53,11 @@ function App() {
           <User />
         </ProtectedRoute>
         <ProtectedRoute path="/" exact={true}>
-          <Home />
+          <ItemAll />
         </ProtectedRoute>
+        <Route path="/item/filter/:query" exact={true}>
+          <ItemFilter />
+        </Route>
         <Route path="/item/all/" exact={true}>
           <ItemAll />
         </Route>
@@ -75,8 +80,8 @@ function App() {
           <h1>404, sorry b . ud!</h1>
         </Route>
       </Switch>
-      <hr class="border-green-500" />
-      <p class="w-full text-center my-12 text-green-500">
+      <hr className="border-green-500" />
+      <p className="w-full text-center my-12 text-green-500">
         <a href="https://github.com/jsalgg">Made by Jonathan Salguero</a>
       </p>
     </BrowserRouter>

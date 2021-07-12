@@ -52,10 +52,16 @@ const SignUpForm = () => {
   }
 
   return (
-    <form onSubmit={onSignUp}>
+    <form
+      className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
+      onSubmit={onSignUp}
+    >
       <div>
-        <label>Name</label>
+        <label className="block text-green-700 text-sm font-bold mb-2">
+          Name
+        </label>
         <input
+          className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
           type="text"
           name="name"
           onChange={updateName}
@@ -63,8 +69,11 @@ const SignUpForm = () => {
         ></input>
       </div>
       <div>
-        <label>Email</label>
+        <label className="block text-green-700 text-sm font-bold mb-2">
+          Email
+        </label>
         <input
+          className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
           type="text"
           name="email"
           onChange={updateEmail}
@@ -72,8 +81,11 @@ const SignUpForm = () => {
         ></input>
       </div>
       <div>
-        <label>Password</label>
+        <label className="block text-green-700 text-sm font-bold mb-2">
+          Password
+        </label>
         <input
+          className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
           type="password"
           name="password"
           onChange={updatePassword}
@@ -81,8 +93,11 @@ const SignUpForm = () => {
         ></input>
       </div>
       <div>
-        <label>Repeat Password</label>
+        <label className="block text-green-700 text-sm font-bold mb-2">
+          Repeat Password
+        </label>
         <input
+          className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
           type="password"
           name="repeat_password"
           onChange={updateRepeatPassword}
@@ -91,8 +106,11 @@ const SignUpForm = () => {
         ></input>
       </div>
       <div>
-        <label>Location</label>
+        <label className="block text-green-700 text-sm font-bold mb-2">
+          Location
+        </label>
         <input
+          className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
           type="text"
           name="location"
           onChange={updateLocation}
@@ -101,15 +119,23 @@ const SignUpForm = () => {
         ></input>
       </div>
       <div>
-        <label>Profile Image</label>
+        <label className="block text-green-700 text-sm font-bold mb-2">
+          Profile Image
+        </label>
         <input
+          className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
           type="text"
           name="profileImage"
           onChange={updateProfileImage}
           value={profileImage}
         ></input>
       </div>
-      <button type="submit">Sign Up</button>
+      <button
+        className="m-2 bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
+        type="submit"
+      >
+        Sign Up
+      </button>
     </form>
   );
 };

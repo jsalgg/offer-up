@@ -1,6 +1,8 @@
 const SET_ITEM = "items/SET_ITEM";
 const REMOVE_ITEM = "items/REMOVE_ITEM";
 const SET_ALL = "items/SET_ALL";
+const SET_ALL_FILTER = "items/SET_ALL_FILTER";
+
 const setItemDispatch = (item) => ({
   type: SET_ITEM,
   payload: item,
@@ -8,6 +10,10 @@ const setItemDispatch = (item) => ({
 
 const setItemsDispatch = (items) => ({
   type: SET_ALL,
+  payload: items,
+});
+const setItemsDispatchFilter = (items) => ({
+  type: SET_ALL_FILTER,
   payload: items,
 });
 
@@ -33,6 +39,16 @@ export const getItemAll = () => async (dispatch) => {
     return data;
   }
   dispatch(setItemsDispatch(data));
+  return {};
+};
+
+export const getItemFilter = (query) => async (dispatch) => {
+  const response = await fetch(`/api/item/filter/${query}/`);
+  const data = await response.json();
+  if (data.errors) {
+    return data;
+  }
+  dispatch(setItemsDispatchFilter(data));
   return {};
 };
 
@@ -115,6 +131,9 @@ export default function reducer(state = initialState, action) {
       return { ...state, [action.payload.id]: action.payload };
     case SET_ALL:
       return { ...state, ...action.payload };
+    case SET_ALL_FILTER:
+      state = {};
+      return { ...action.payload };
     case REMOVE_ITEM:
       delete state[action.payload.id];
       return { ...state };

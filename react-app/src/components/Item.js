@@ -18,11 +18,9 @@ export default function Item({ item }) {
     itemState = item;
   }
   console.log(itemState);
-
-  useEffect(() => {
+  if (!item) {
     dispatch(getItem(id));
-  }, []);
-
+  }
   const toEdit = () => {
     history.push(`/item/${id}/edit`);
   };

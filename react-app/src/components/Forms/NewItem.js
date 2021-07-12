@@ -53,12 +53,12 @@ const NewItem = () => {
             setType(ev.target.value);
           }}
         >
+          <option value="Select Type">Select Type</option>
           <option value="Electronics and Media">Electronics and Media</option>
           <option value="Home and Garden">Home and Garden</option>
           <option value="Clothing, Shoes, and Accessories">
             Clothing, Shoes, and Accessories
           </option>
-          <option value="Baby and Kids">Baby and Kids</option>
           <option value="Baby and Kids">Baby and Kids</option>
           <option value="Vehicles">Vehicles</option>
           <option value="Toys, Games, and Hobbies">

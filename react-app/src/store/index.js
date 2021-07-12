@@ -7,7 +7,6 @@ import chat from "./chat";
 const rootReducer = combineReducers({
   session,
   item,
-  chat,
 });
 
 let enhancer;

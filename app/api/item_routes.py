@@ -4,9 +4,18 @@ from app.models import Item, db
 from app.forms import ItemForm
 
 item_routes = Blueprint('item', __name__)
+
 @item_routes.route('/all', methods=['GET'])
 def get_items():
     items= Item.query.all()
+    return_data = {item.id: item.to_dict() for item in items}
+    return return_data
+
+
+@item_routes.route('/filter/<query>/', methods=['GET'])
+def get_filter(query):
+    print("Fired Up!!!!!!!!!!!!!!!")
+    items = Item.query.filter(Item.type == query).all()
     return_data = {item.id: item.to_dict() for item in items}
     return return_data
 
@@ -31,6 +40,8 @@ def create_item():
         db.session.commit()
         return item.to_dict()
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
+
+
 @item_routes.route('/<int:id>/', methods=['POST', 'DELETE', 'GET'])
 def edit_item(id):
     form = ItemForm()

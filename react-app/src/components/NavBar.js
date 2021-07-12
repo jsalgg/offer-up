@@ -30,7 +30,7 @@ const NavBar = () => {
     );
   } else {
     return (
-      <nav>
+      <nav className="flex flex-wrap items-center justify-between p-5 bg-green-500">
         <NavLink to="/login" exact={true} activeClassName="active">
           Login
         </NavLink>

@@ -35,14 +35,25 @@ const Chat = () => {
   return (
     user && (
       <div>
-        <div>
+        <div className="border-solid border-4 border-green-500">
+          <h1 className="font-bold">Messages</h1>
           {messages.map((message, ind) => (
             <div key={ind}>{`${message.user}: ${message.msg}`}</div>
           ))}
         </div>
         <form onSubmit={sendChat}>
-          <input value={chatInput} onChange={updateChatInput} />
-          <button type="submit">Send</button>
+          <input
+            className="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            value={chatInput}
+            placeholder="Enter Message"
+            onChange={updateChatInput}
+          />
+          <button
+            className="m-2 bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
+            type="submit"
+          >
+            Send
+          </button>
         </form>
       </div>
     )
