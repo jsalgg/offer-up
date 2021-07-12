@@ -17,6 +17,7 @@
 **Front End**
 * JavaScript
 * HTML/CSS
+* TailwindCSS
 * ReactJS
 * [Favicon.io](https://favicon.io)
 * [Fontawesome](http://fontawesome.com/)
