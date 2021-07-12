@@ -46,10 +46,16 @@ const EditItem = () => {
 
   return (
     <>
-      <form onSubmit={onSubmit}>
+      <form
+        onSubmit={onSubmit}
+        className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
+      >
         <div>
-          <label>Name</label>
+          <label className="block text-green-700 text-sm font-bold mb-2">
+            Name
+          </label>
           <input
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             type="text"
             name="name"
             onChange={(ev) => {
@@ -59,8 +65,11 @@ const EditItem = () => {
           ></input>
         </div>
         <div>
-          <label>Type</label>
+          <label className="block text-green-700 text-sm font-bold mb-2">
+            Type
+          </label>
           <select
+            className="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
             value={type}
             onChange={(ev) => {
               setType(ev.target.value);
@@ -82,8 +91,11 @@ const EditItem = () => {
           </select>
         </div>
         <div>
-          <label>Price</label>
+          <label className="block text-green-700 text-sm font-bold mb-2">
+            Price
+          </label>
           <input
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             type="number"
             name="price"
             onChange={(ev) => {
@@ -93,8 +105,11 @@ const EditItem = () => {
           ></input>
         </div>
         <div>
-          <label>Description</label>
+          <label className="block text-green-700 text-sm font-bold mb-2">
+            Description
+          </label>
           <textarea
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             type="textarea"
             name="description"
             onChange={(ev) => {
@@ -104,9 +119,19 @@ const EditItem = () => {
             required={true}
           ></textarea>
         </div>
-        <button type="submit">Edit Item</button>
+        <button
+          className="m-2 bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
+          type="submit"
+        >
+          Edit Item
+        </button>
       </form>
-      <button onClick={deleteRedirect}>Delete Item</button>
+      <button
+        className="m-2 bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
+        onClick={deleteRedirect}
+      >
+        Delete Item
+      </button>
     </>
   );
 };

@@ -75,6 +75,10 @@ function App() {
           <h1>404, sorry b . ud!</h1>
         </Route>
       </Switch>
+      <hr class="border-green-500" />
+      <p class="w-full text-center my-12 text-green-500">
+        <a href="https://github.com/jsalgg">Made by Jonathan Salguero</a>
+      </p>
     </BrowserRouter>
   );
 }

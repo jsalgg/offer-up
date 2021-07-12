@@ -19,7 +19,12 @@ const DeleteItem = () => {
     <>
       <p>Are you sure you want to delete?</p>
       <form onSubmit={onSubmit}>
-        <button type="submit">Delete Item</button>
+        <button
+          className="m-2 bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
+          type="submit"
+        >
+          Delete Item
+        </button>
       </form>
     </>
   );

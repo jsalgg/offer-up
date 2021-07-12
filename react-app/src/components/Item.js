@@ -47,24 +47,24 @@ export default function Item({ item }) {
             </>
           )}
         </div>
-        <div className="flex justify-end mt-4">
+        <div className="flex justify-start mt-4">
           <p className="text-xl font-medium text-indigo-500">
             ${itemState.price}
           </p>
           <br></br>
-          <div className="flex justify-start mt-4">
+          <div className="flex justify-end mt-4">
             {user.id === itemState.owner_id && (
               <>
                 <button
                   onClick={toEdit}
-                  className="bg-transparent hover:bg-green-500 text-black font-semibold hover:text-white py-2 px-4 border border-green-500 hover:border-transparent rounded"
+                  className=" m-2 bg-transparent hover:bg-green-500 text-black font-semibold hover:text-white py-2 px-4 border border-green-500 hover:border-transparent rounded"
                 >
                   {" "}
                   Edit
                 </button>
                 <button
                   onClick={toChat}
-                  className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
+                  className="m-2 bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
                 >
                   {" "}
                   See Messages{" "}
