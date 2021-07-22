@@ -1,30 +1,20 @@
 
 from flask import Blueprint, session, redirect, url_for, render_template, request
-from app.forms import ChatForm
+from app.forms import ChatRoomForm, ChatMessageForm
+from app.models import Chat_Room, Chat_Message, db
 
-chat_routes = Blueprint('chat', __name__)
+chat_message_routes = Blueprint('chat_message', __name__)
 
+chat_room_routes = Blueprint('chat_room', __name__)
 
-@chat_routes.route('/', methods=['GET', 'POST'])
-def index():
-    """Login form to enter a room."""
-    form = ChatForm()
-    if form.validate_on_submit():
-        session['name'] = form.name.data
-        session['room'] = form.room.data
-        return redirect(url_for('.chat'))
-    elif request.method == 'GET':
-        form.name.data = session.get('name', '')
-        form.room.data = session.get('room', '')
-    return form
-
-
-@chat_routes.route('/chat')
-def chat():
-    """Chat room. The user's name and room must be stored in
-    the session."""
-    name = session.get('name', '')
-    room = session.get('room', '')
-    if name == '' or room == '':
-        return redirect(url_for('.index'))
-    return name, room
+@chat_room_routes.route("/create", methods=["POST"])
+def chat_room_create():
+    form = ChatRoomForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if request.method=="POST":
+        chat_room = Chat_Room(
+            item_id = form.data['item_id'],
+            seller_id = form.data['seller_id'],
+            buyer_id = form.data['buyer_id'],
+            title = form.data['title']
+        )

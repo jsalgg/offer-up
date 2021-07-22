@@ -1,4 +1,4 @@
 from .login_form import LoginForm
 from .signup_form import SignUpForm
 from .item_form import ItemForm
-from .chat_form import ChatForm
+from .chat_form import ChatRoomForm, ChatMessageForm
