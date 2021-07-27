@@ -1,21 +1,28 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import { getItem } from "../store/item";
-
 import { readMessages, createMessage } from "../store/chat";
 // import { io } from "socket.io-client";
 let socket;
 
 const Chat = () => {
   const { id } = useParams();
+  const history = useHistory();
+
   const [chatInput, setChatInput] = useState("");
   const user = useSelector((state) => state.session.user);
   const chatroom = useSelector((state) => state.chat.chatroom);
   console.log(id);
   const item = useSelector((state) => state.item[id]);
   // const messagesState = ;
-  let chatroomId = Object.keys(chatroom)[0];
+  let chatroomId;
+  if (chatroom) {
+    chatroomId = Object.keys(chatroom)[0];
+  } else {
+    history.push(`/item/${id}`);
+  }
+
   let dispatch = useDispatch();
   console.log("chatroom id: ", chatroomId);
   console.log("item,    : ", item);

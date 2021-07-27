@@ -38,25 +38,29 @@ export default function Item({ item }) {
       <div className="border-solid border-4 border-green-500 py-4 px-8 bg-white shadow-lg rounded-lg ">
         <div>
           <h2 className="text-gray-800 text-3xl font-semibold">
-            {itemState.name}
+            {itemState && itemState.name}
           </h2>
-          <p className="mt-2 text-gray-600">{itemState.location}</p>
+          <p className="mt-2 text-gray-600">
+            {itemState && itemState.location}
+          </p>
           {id && (
             <>
-              <p className="mt-2 text-gray-600">{itemState.description}</p>
               <p className="mt-2 text-gray-600">
-                Posted On: {itemState.posted_on}
+                {itemState && itemState.description}
+              </p>
+              <p className="mt-2 text-gray-600">
+                Posted On: {itemState && itemState.posted_on}
               </p>
             </>
           )}
         </div>
         <div className="flex justify-start mt-4">
           <p className="text-xl font-medium text-indigo-500">
-            ${itemState.price}
+            ${itemState && itemState.price}
           </p>
           <br></br>
           <div className="flex justify-end mt-4">
-            {user.id === itemState.owner_id && (
+            {itemState && user.id === itemState.owner_id && (
               <>
                 <button
                   onClick={toEdit}
@@ -74,7 +78,7 @@ export default function Item({ item }) {
                 </button>
               </>
             )}
-            {user.id !== itemState.owner_id && (
+            {itemState && user.id !== itemState.owner_id && (
               <>
                 <button
                   onClick={toChat(id, itemState.owner_id, user.id)}
