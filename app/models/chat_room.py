@@ -8,3 +8,13 @@ class Chat_Room(db.Model):
     seller_id = db.Column(db.Integer, nullable=False)
     buyer_id = db.Column(db.Integer, nullable=False)
     title = db.Column(db.String, nullable=False)
+
+
+    def to_dict(self):
+            return {
+                "id": self.id,
+                "item_id": self.item_id,
+                "seller_id": self.seller_id,
+                "buyer_id": self.buyer_id,
+                "title": self.title,
+                }

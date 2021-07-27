@@ -132,8 +132,7 @@ export default function reducer(state = initialState, action) {
     case SET_ALL:
       return { ...state, ...action.payload };
     case SET_ALL_FILTER:
-      state = {};
-      return { ...action.payload };
+      return { ...state, ...action.payload };
     case REMOVE_ITEM:
       delete state[action.payload.id];
       return { ...state };

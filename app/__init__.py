@@ -9,7 +9,7 @@ from .models import db, User
 from .api.user_routes import user_routes
 from .api.auth_routes import auth_routes
 from .api.item_routes import item_routes
-#from .api.chat_routes import chat_routes
+from .api.chat_routes import chat_room_routes, chat_message_routes
 
 from .seeds import seed_commands
 
@@ -36,7 +36,9 @@ app.config.from_object(Config)
 app.register_blueprint(user_routes, url_prefix='/api/users')
 app.register_blueprint(auth_routes, url_prefix='/api/auth')
 app.register_blueprint(item_routes, url_prefix='/api/item')
-# app.register_blueprint(chat_routes, url_prefix='/api/chat')
+app.register_blueprint(chat_room_routes, url_prefix='/api/chatroom')
+app.register_blueprint(chat_message_routes, url_prefix='/api/chat/message')
+
 
 db.init_app(app)
 Migrate(app, db)

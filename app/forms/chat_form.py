@@ -16,4 +16,5 @@ class ChatMessageForm(FlaskForm):
     recipient_id = IntegerField('Recipient', validators=[Required()])
     chatroom_id = IntegerField('Chat Room', validators=[Required()])
     message_content = StringField('Message Content', validators=[Required()])
-    message_datetime = DateField('Message Sent', validators=[Required()])
+    message_datetime = StringField('Message Sent', validators=[Required()])
+    submit = SubmitField('Send Message')

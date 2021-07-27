@@ -18,6 +18,7 @@ import Home from "./components/Home";
 import ItemFilter from "./components/ItemFilter";
 import "./index.css";
 import "./styles/output.css";
+import ChatList from "./components/ChatList";
 
 function App() {
   const user = useSelector((state) => state.session.user);
@@ -66,6 +67,9 @@ function App() {
         </ProtectedRoute>
         <Route path="/item/:id" exact={true}>
           <Item />
+        </Route>
+        <Route path="/item/:id/chatlist">
+          <ChatList />
         </Route>
         <Route path="/item/:id/chat">
           <Chat />

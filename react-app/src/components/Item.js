@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams, Link } from "react-router-dom";
 import { getItem } from "../store/item";
-import { startChat } from "../store/chat";
+import { createChatRoom, readChatRoom } from "../store/chat";
 
 export default function Item({ item }) {
   const dispatch = useDispatch();
@@ -18,15 +18,20 @@ export default function Item({ item }) {
     itemState = item;
   }
   console.log(itemState);
-  if (!item) {
+
+  useEffect(() => {
     dispatch(getItem(id));
-  }
+  }, []);
+
   const toEdit = () => {
     history.push(`/item/${id}/edit`);
   };
-  const toChat = () => {
-    dispatch(startChat(user.name, itemState.id));
+  const toChat = (itemId, sellerId, buyerId) => async () => {
+    await dispatch(readChatRoom(itemId, sellerId, buyerId));
     history.push(`/item/${id}/chat`);
+  };
+  const toSee = (itemId) => async () => {
+    history.push(`/item/${itemId}/chatlist`);
   };
   return (
     <div className="p-6">
@@ -61,7 +66,7 @@ export default function Item({ item }) {
                   Edit
                 </button>
                 <button
-                  onClick={toChat}
+                  onClick={toSee(id)}
                   className="m-2 bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
                 >
                   {" "}
@@ -72,8 +77,8 @@ export default function Item({ item }) {
             {user.id !== itemState.owner_id && (
               <>
                 <button
+                  onClick={toChat(id, itemState.owner_id, user.id)}
                   className="m-2 bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
-                  onClick={toChat}
                 >
                   {" "}
                   Send Message
