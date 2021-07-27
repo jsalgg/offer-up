@@ -39,7 +39,7 @@ export const readChatRoom = (itemId, sellerId, buyerId) => async (dispatch) => {
 };
 //read chatrooms lists
 export const readChatRoomList = (itemId, sellerId) => async (dispatch) => {
-  const response = await fetch(`/api/chatroom/list/${itemId}/${sellerId}/`);
+  const response = await fetch(`/api/chatroom/list/${itemId}/${sellerId}`);
   const data = await response.json();
   if (data.errors) {
     return data;
