@@ -30,6 +30,8 @@ def chat_room_get(item_id, seller_id, buyer_id):
     # return return_data
     chatrooms = Chat_Room.query.filter(Chat_Room.item_id == item_id).filter(Chat_Room.seller_id == seller_id).filter(Chat_Room.buyer_id == buyer_id).all()
     if not chatrooms:
+        form = ChatRoomForm()
+        form['csrf_token'].data = request.cookies['csrf_token']
         chat_room = Chat_Room(
             item_id = item_id,
             seller_id = seller_id,
