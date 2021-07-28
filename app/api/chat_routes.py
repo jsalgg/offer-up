@@ -7,7 +7,7 @@ chat_message_routes = Blueprint('chat_message', __name__)
 
 chat_room_routes = Blueprint('chat_room', __name__)
 
-@chat_room_routes.route("/create", methods=["POST"])
+@chat_room_routes.route("/create/", methods=["POST"])
 def chat_room_create():
     form = ChatRoomForm()
     form['csrf_token'].data = request.cookies['csrf_token']
@@ -53,7 +53,7 @@ def chat_room_get_list(item_id, seller_id):
 
 
 
-@chat_message_routes.route("/create", methods=['POST'])
+@chat_message_routes.route("/create/", methods=['POST'])
 def chat_message_create():
     form = ChatMessageForm()
     form['csrf_token'].data = request.cookies['csrf_token']
@@ -70,7 +70,7 @@ def chat_message_create():
         return chat_message.to_dict()
 
 
-@chat_message_routes.route("/<int:chatroom_id>", methods=['GET'])
+@chat_message_routes.route("/<int:chatroom_id>/", methods=['GET'])
 def chat_message_get_by_chatroom(chatroom_id):
     messages = Chat_Message.query.filter(Chat_Message.chatroom_id == chatroom_id).all()
     return {message.id: message.to_dict() for message in messages}

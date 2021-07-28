@@ -28,7 +28,7 @@ const readChatRoomListDispatch = (chatrooms) => ({
 //read chatroom
 export const readChatRoom = (itemId, sellerId, buyerId) => async (dispatch) => {
   const response = await fetch(
-    `/api/chatroom/${itemId}/${sellerId}/${buyerId}`
+    `/api/chatroom/${itemId}/${sellerId}/${buyerId}/`
   );
   const data = await response.json();
   if (data.errors) {
@@ -39,7 +39,7 @@ export const readChatRoom = (itemId, sellerId, buyerId) => async (dispatch) => {
 };
 //read chatrooms lists
 export const readChatRoomList = (itemId, sellerId) => async (dispatch) => {
-  const response = await fetch(`/api/chatroom/list/${itemId}/${sellerId}`);
+  const response = await fetch(`/api/chatroom/list/${itemId}/${sellerId}/`);
   const data = await response.json();
   if (data.errors) {
     return data;
@@ -50,7 +50,7 @@ export const readChatRoomList = (itemId, sellerId) => async (dispatch) => {
 
 //read mewssages
 export const readMessages = (chatroomId) => async (dispatch) => {
-  const response = await fetch(`/api/chat/message/${chatroomId}`);
+  const response = await fetch(`/api/chat/message/${chatroomId}/`);
   const data = await response.json();
   if (data.errors) {
     return data;
@@ -61,7 +61,7 @@ export const readMessages = (chatroomId) => async (dispatch) => {
 //createchatroom,
 export const createChatRoom =
   (itemId, sellerId, buyerId) => async (dispatch) => {
-    const response = await fetch(`/api/chatroom/create`, {
+    const response = await fetch(`/api/chatroom/create/`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -85,7 +85,7 @@ export const createChatRoom =
 export const createMessage =
   (senderId, recipientId, chatroomId, messageContent, messageDatetime) =>
   async (dispatch) => {
-    const response = await fetch(`/api/chat/message/create`, {
+    const response = await fetch(`/api/chat/message/create/`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
