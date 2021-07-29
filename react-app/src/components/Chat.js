@@ -42,6 +42,10 @@ const Chat = () => {
     // };
   }, []);
 
+  const reloadMessages = (chatroom) => async () => {
+    dispatch(readMessages(chatroomId));
+  };
+
   console.log("messages: ", messagesState);
   const updateChatInput = (e) => {
     setChatInput(e.target.value);
@@ -99,6 +103,12 @@ const Chat = () => {
             Send
           </button>
         </form>
+        <button
+          className="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          onClick={reloadMessages(chatroomId)}
+        >
+          Reload Messages
+        </button>
       </div>
     )
   );
