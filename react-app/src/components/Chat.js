@@ -40,7 +40,7 @@ const Chat = () => {
     // return () => {
     //   socket.disconnect();
     // };
-  }, [dispatch]);
+  }, []);
 
   console.log("messages: ", messagesState);
   const updateChatInput = (e) => {
