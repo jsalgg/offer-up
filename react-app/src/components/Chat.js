@@ -27,7 +27,6 @@ const Chat = () => {
   console.log("chatroom id: ", chatroomId);
   console.log("item,    : ", item);
   const messagesState = useSelector((state) => state.chat.message);
-
   useEffect(() => {
     dispatch(readMessages(chatroomId));
     // open socket connection
@@ -42,9 +41,11 @@ const Chat = () => {
     // };
   }, []);
 
-  const reloadMessages = (chatroom) => async () => {
+  const reloadMessages = () => async () => {
+    console.log("reloaded");
     dispatch(readMessages(chatroomId));
   };
+  window.onload = reloadMessages();
 
   console.log("messages: ", messagesState);
   const updateChatInput = (e) => {
