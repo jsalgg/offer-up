@@ -18,7 +18,7 @@ def validation_errors_to_error_messages(validation_errors):
     return errorMessages
 
 
-@auth_routes.route('/')
+@auth_routes.route('/') 
 def authenticate():
     """
     Authenticates a user.
@@ -62,7 +62,7 @@ def sign_up():
     """
     form = SignUpForm()
     form['csrf_token'].data = request.cookies['csrf_token']
-    if request.method=="POST":
+    if form.validate_on_submit():
         user = User(
             name=form.data['name'],
             email=form.data['email'],
