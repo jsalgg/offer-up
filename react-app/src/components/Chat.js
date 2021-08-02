@@ -24,6 +24,8 @@ const Chat = () => {
   }
 
   let dispatch = useDispatch();
+  dispatch(readMessages(chatroomId));
+
   console.log("chatroom id: ", chatroomId);
   console.log("item,    : ", item);
   const messagesState = useSelector((state) => state.chat.message);
