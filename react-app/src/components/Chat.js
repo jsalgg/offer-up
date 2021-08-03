@@ -30,6 +30,7 @@ const Chat = () => {
   console.log("item,    : ", item);
   const messagesState = useSelector((state) => state.chat.message);
   useEffect(() => {
+    console.log("useefeect");
     dispatch(readMessages(chatroomId));
     // open socket connection
     // create websocket
@@ -42,6 +43,9 @@ const Chat = () => {
     //   socket.disconnect();
     // };
   }, []);
+  useEffect(() => {
+    dispatch(readMessages(chatroomId));
+  }, [chatroomId]);
 
   const reloadMessages = () => async () => {
     console.log("reloaded");
