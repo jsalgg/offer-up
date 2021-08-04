@@ -118,13 +118,21 @@ export default function reducer(state = initialState, action) {
       return { user: null };
     case GET_USER:
       if (state.user.id !== action.payload.id) {
-        return { user: { ...state.user }, user_2: action.payload };
+        return {
+          user: { ...state.user },
+          user_2: action.payload,
+          users: { ...state.users },
+        };
       } else {
         return { ...state };
       }
     case GET_ALL_USER:
       const obj = action.payload;
-      return { user: { ...state.user }, users: { ...obj } };
+      return {
+        user: { ...state.user },
+        user_2: { ...state.user_2 },
+        users: { ...obj },
+      };
 
     default:
       return state;

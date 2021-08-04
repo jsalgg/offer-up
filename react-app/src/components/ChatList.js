@@ -31,16 +31,13 @@ export default function ChatList() {
 
   useEffect(() => {
     if (chatroomList) {
-      if (!users) {
-        const keys = Object.keys(chatroomList).map(
-          (key) => chatroomList[Number(key)].buyer_id
-        );
-        dispatch(get_multiple(keys));
-      } else {
-        console.log(users);
-        setBuyers(users);
-        console.log("buyers", buyers);
-      }
+      const keys = Object.keys(chatroomList).map(
+        (key) => chatroomList[Number(key)].buyer_id
+      );
+      dispatch(get_multiple(keys));
+      console.log(users);
+      setBuyers(users);
+      console.log("buyers", buyers);
     }
   }, [chatroomList, buyers, ids, users]);
   return (
@@ -52,14 +49,18 @@ export default function ChatList() {
             Object.values(chatroomList).map((chatroom, ind) => {
               return (
                 <>
-                  <button
-                    key={ind}
-                    onClick={() => toChat(id, user.id, chatroom.buyer_id)}
-                    className="m-2 bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
-                  >
-                    Chat with {buyers ? buyers[chatroom.buyer_id].name : null}
-                  </button>
-                  ;
+                  {buyers && (
+                    <button
+                      key={ind}
+                      onClick={() => toChat(id, user.id, chatroom.buyer_id)}
+                      className="m-2 bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
+                    >
+                      Chat with{" "}
+                      {buyers[chatroom.buyer_id]
+                        ? buyers[chatroom.buyer_id].name
+                        : null}
+                    </button>
+                  )}
                 </>
               );
             })}

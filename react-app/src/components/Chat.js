@@ -16,6 +16,7 @@ const Chat = () => {
   const chatroom = useSelector((state) => state.chat.chatroom);
   const user2 = useSelector((state) => state.session.user_2);
   const [personB, setPersonB] = useState("");
+  const [mess, setMess] = useState("");
   let dispatch = useDispatch();
   console.log(id);
   const item = useSelector((state) => state.item[id]);
@@ -45,24 +46,29 @@ const Chat = () => {
   useEffect(() => {
     console.log("useefeect");
     dispatch(readMessages(chatroomId));
-    // open socket connection
-    // create websocket`
-    // socket = io();
-    // socket.on("chat", (chat) => {
-    //   setMessages((messages) => [...messages, chat]);
-    // });
-    // // when component unmounts, disconnect
-    // return () => {
-    //   socket.disconnect();
-    // };
+    setMess(messagesState);
+    if (chatroom) {
+      if (!personB) {
+        if (chatroom[chatroomId].seller_id !== user.id) {
+          const id = dispatch(get_user(chatroom[chatroomId].seller_id));
+          setPersonB("fulfilled");
+        } else {
+          console.log(chatroom[chatroomId].buyer_id);
+          const id = dispatch(get_user(chatroom[chatroomId].buyer_id));
+          setPersonB("fulfilled");
+        }
+      }
+    }
   }, []);
   useEffect(() => {
     dispatch(readMessages(chatroomId));
+    setMess(messagesState);
   }, [chatroomId, chatInput, messagesState]);
 
   const reloadMessages = () => async () => {
     console.log("reloaded");
     dispatch(readMessages(chatroomId));
+    setMess(messagesState);
   };
 
   console.log("messages: ", messagesState);
@@ -102,14 +108,16 @@ const Chat = () => {
       <div>
         <div className="border-solid border-4 border-green-500">
           <h1 className="font-bold">Messages</h1>
-          {messagesState &&
-            user2 &&
+          {messagesState && user2 ? (
             Object.values(messagesState).map((message, ind) => (
               <div key={ind}>{`${
                 message.sender_id === user.id ? user.name : user2.name
               }: ${message.message_content}
               `}</div>
-            ))}
+            ))
+          ) : (
+            <div>Send the first message!</div>
+          )}
         </div>
         <form onSubmit={sendChat}>
           <input
