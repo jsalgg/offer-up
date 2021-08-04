@@ -23,6 +23,13 @@ export default function ChatList() {
   }
 
   useEffect(() => {
+    dispatch(readChatRoomList(id, user.id));
+    if (users) {
+      setBuyers(users);
+    }
+  }, []);
+
+  useEffect(() => {
     if (chatroomList) {
       if (!users) {
         const keys = Object.keys(chatroomList).map(
@@ -50,7 +57,7 @@ export default function ChatList() {
                     onClick={() => toChat(id, user.id, chatroom.buyer_id)}
                     className="m-2 bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
                   >
-                    Chat with {buyers[chatroom.buyer_id].name}
+                    Chat with {buyers ? buyers[chatroom.buyer_id].name : null}
                   </button>
                   ;
                 </>
