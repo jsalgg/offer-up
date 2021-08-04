@@ -7,7 +7,6 @@ import EditItem from "./Forms/EditItem";
 export default function ItemFilter() {
   const item = useSelector((state) => Object.values(state.item));
   const { query } = useParams();
-  console.log(query);
   const dispatch = useDispatch();
   const history = useHistory();
   useEffect(() => {

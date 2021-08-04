@@ -17,7 +17,6 @@ export default function Item({ item }) {
   } else {
     itemState = item;
   }
-  console.log(itemState);
 
   useEffect(() => {
     dispatch(getItem(id));

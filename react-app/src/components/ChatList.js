@@ -35,9 +35,7 @@ export default function ChatList() {
         (key) => chatroomList[Number(key)].buyer_id
       );
       dispatch(get_multiple(keys));
-      console.log(users);
       setBuyers(users);
-      console.log("buyers", buyers);
     }
   }, [chatroomList, buyers, ids, users]);
   return (

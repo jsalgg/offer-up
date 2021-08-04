@@ -18,7 +18,6 @@ const Chat = () => {
   const [personB, setPersonB] = useState("");
   const [mess, setMess] = useState("");
   let dispatch = useDispatch();
-  console.log(id);
   const item = useSelector((state) => state.item[id]);
   // const messagesState = ;
   let chatroomId;
@@ -31,7 +30,6 @@ const Chat = () => {
           const id = dispatch(get_user(chatroom[chatroomId].seller_id));
           setPersonB("fulfilled");
         } else {
-          console.log(chatroom[chatroomId].buyer_id);
           const id = dispatch(get_user(chatroom[chatroomId].buyer_id));
           setPersonB("fulfilled");
         }
@@ -44,7 +42,6 @@ const Chat = () => {
   const messagesState = useSelector((state) => state.chat.message);
 
   useEffect(() => {
-    console.log("useefeect");
     dispatch(readMessages(chatroomId));
     setMess(messagesState);
     if (chatroom) {
@@ -53,7 +50,6 @@ const Chat = () => {
           const id = dispatch(get_user(chatroom[chatroomId].seller_id));
           setPersonB("fulfilled");
         } else {
-          console.log(chatroom[chatroomId].buyer_id);
           const id = dispatch(get_user(chatroom[chatroomId].buyer_id));
           setPersonB("fulfilled");
         }
@@ -66,12 +62,10 @@ const Chat = () => {
   }, [chatroomId, chatInput, messagesState]);
 
   const reloadMessages = () => async () => {
-    console.log("reloaded");
     dispatch(readMessages(chatroomId));
     setMess(messagesState);
   };
 
-  console.log("messages: ", messagesState);
   const updateChatInput = (e) => {
     setChatInput(e.target.value);
   };
@@ -95,7 +89,6 @@ const Chat = () => {
       ":" +
       date.getSeconds();
     // socket.emit("chat", { user: user.name, msg: chatInput });
-    console.log(user.id, item.owner_id, chatroomId, chatInput, formatDate);
 
     dispatch(
       createMessage(user.id, item.owner_id, chatroomId, chatInput, formatDate)

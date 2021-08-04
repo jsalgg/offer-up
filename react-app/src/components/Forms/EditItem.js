@@ -7,10 +7,8 @@ import DeleteItem from "./DeleteItem";
 import { editItem } from "../../store/item";
 const EditItem = () => {
   const { id } = useParams();
-  console.log(id);
   const user = useSelector((state) => state.session.user);
   const item = useSelector((state) => state.item[id]);
-  console.log(item);
   const history = useHistory();
   const [name, setName] = useState();
   const [type, setType] = useState();
