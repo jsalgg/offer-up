@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Redirect, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { newItem } from "../../store/item";
 
 const NewItem = () => {
@@ -9,10 +9,10 @@ const NewItem = () => {
   const [name, setName] = useState("");
   const [type, setType] = useState("Select Type");
   const [price, setPrice] = useState("");
-  const [postedOn, setPostedOn] = useState(new Date());
-  const [ownerId, setOwnerId] = useState(user.id);
+  const postedOn = new Date();
+  const ownerId = user.id;
   const [description, setDescription] = useState("");
-  const [location, setLocation] = useState(user.location);
+  const location = user.location;
   const dispatch = useDispatch();
 
   const onSubmit = async (e) => {

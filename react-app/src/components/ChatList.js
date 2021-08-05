@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory, useParams, Link } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import { readChatRoom, readChatRoomList } from "../store/chat";
 import { get_multiple } from "../store/session";
 
@@ -10,7 +10,6 @@ export default function ChatList() {
   const user = useSelector((state) => state.session.user);
   const users = useSelector((state) => state.session.users);
   const [buyers, setBuyers] = useState("");
-  const [ids, setIds] = useState("");
   const chatroomList = useSelector((state) => state.chat.chatroom);
   const history = useHistory();
 
@@ -37,7 +36,7 @@ export default function ChatList() {
       dispatch(get_multiple(keys));
       setBuyers(users);
     }
-  }, [chatroomList, buyers, ids, users]);
+  }, [chatroomList, buyers, users]);
   return (
     <div className="p-6">
       <div className="border-solid border-4 border-green-500 py-4 px-8 bg-white shadow-lg rounded-lg ">
@@ -46,7 +45,7 @@ export default function ChatList() {
             buyers &&
             Object.values(chatroomList).map((chatroom, ind) => {
               return (
-                <>
+                <div key={"a" + ind}>
                   {buyers && (
                     <button
                       key={ind}
@@ -59,7 +58,7 @@ export default function ChatList() {
                         : null}
                     </button>
                   )}
-                </>
+                </div>
               );
             })}
         </div>

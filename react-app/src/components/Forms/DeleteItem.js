@@ -1,8 +1,6 @@
-import React, { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import React from "react";
+import { useDispatch } from "react-redux";
 import { useParams, useHistory } from "react-router-dom";
-import { useEffect } from "react";
-import { getItem } from "../../store/item";
 import { deleteItem } from "../../store/item";
 
 const DeleteItem = () => {

@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory, useParams, Link } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import { getItem } from "../store/item";
-import { createChatRoom, readChatRoom } from "../store/chat";
+import { readChatRoom } from "../store/chat";
 
 export default function Item({ item }) {
   const dispatch = useDispatch();

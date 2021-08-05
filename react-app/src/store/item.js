@@ -23,6 +23,7 @@ const deleteItemDispatch = (item) => ({
 });
 
 export const getItem = (id) => async (dispatch) => {
+  if (!id) return {};
   const response = await fetch(`/api/item/${id}/`);
   const data = await response.json();
   if (data.errors) {
