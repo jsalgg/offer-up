@@ -55,8 +55,11 @@ const Chat = () => {
         }
       }
     }
+    if (user2) {
+      setPersonB(user2);
+    }
     console.log(personB);
-  }, [personB, user2]);
+  }, [personB, user2, chatroom]);
   // useEffect(() => {
   //   dispatch(readMessages(chatroomId));
   //   setMess(messagesState);
