@@ -48,14 +48,15 @@ const Chat = () => {
       if (!personB) {
         if (chatroom[chatroomId].seller_id !== user.id) {
           const id = dispatch(get_user(chatroom[chatroomId].seller_id));
-          setPersonB("fulfilled");
+          setPersonB(user2);
         } else {
           const id = dispatch(get_user(chatroom[chatroomId].buyer_id));
-          setPersonB("fulfilled");
+          setPersonB(user2);
         }
       }
     }
-  }, []);
+    console.log(personB);
+  }, [personB, user2]);
   useEffect(() => {
     dispatch(readMessages(chatroomId));
     setMess(messagesState);
@@ -101,7 +102,7 @@ const Chat = () => {
       <div>
         <div className="border-solid border-4 border-green-500">
           <h1 className="font-bold">Messages</h1>
-          {messagesState && user2 ? (
+          {messagesState && personB && user2 ? (
             Object.values(messagesState).map((message, ind) => (
               <div key={ind}>{`${
                 message.sender_id === user.id ? user.name : user2.name
