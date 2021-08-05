@@ -57,10 +57,10 @@ const Chat = () => {
     }
     console.log(personB);
   }, [personB, user2]);
-  useEffect(() => {
-    dispatch(readMessages(chatroomId));
-    setMess(messagesState);
-  }, [chatroomId, chatInput, messagesState]);
+  // useEffect(() => {
+  //   dispatch(readMessages(chatroomId));
+  //   setMess(messagesState);
+  // }, [chatroomId, chatInput, messagesState]);
 
   const reloadMessages = () => async () => {
     dispatch(readMessages(chatroomId));
