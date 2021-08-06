@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 import { readChatRoom, readChatRoomList } from "../store/chat";
-import { get_multiple } from "../store/session";
+import { get_multiple, get_user } from "../store/session";
 
 export default function ChatList() {
   const dispatch = useDispatch();
@@ -13,8 +13,9 @@ export default function ChatList() {
   const chatroomList = useSelector((state) => state.chat.chatroom);
   const history = useHistory();
 
-  const toChat = (itemId, sellerId, buyerId) => {
-    dispatch(readChatRoom(itemId, sellerId, buyerId));
+  const toChat = async (itemId, sellerId, buyerId) => {
+    await dispatch(get_user(buyerId));
+    await dispatch(readChatRoom(itemId, sellerId, buyerId));
     history.push(`/item/${id}/chat`);
   };
   if (!chatroomList && id && user) {
