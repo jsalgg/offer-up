@@ -87,6 +87,21 @@ const Chat = () => {
     setMess(messagesState);
   };
 
+  const reloadUser2 = () => async () => {
+    if (chatroom) {
+      if (chatroom[chatroomId].seller_id !== user.id) {
+        await dispatch(get_user(chatroom[chatroomId].seller_id));
+      } else {
+        await dispatch(get_user(chatroom[chatroomId].buyer_id));
+      }
+    }
+    return {};
+  };
+
+  setTimeout(() => {
+    reloadUser2();
+  }, 3000);
+
   const updateChatInput = (e) => {
     setChatInput(e.target.value);
   };
