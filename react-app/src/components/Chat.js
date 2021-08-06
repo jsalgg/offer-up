@@ -67,8 +67,14 @@ const Chat = () => {
         }
       }
     }
-    if (user2) {
-      setPersonB(user2);
+    if (!user2 && chatroom) {
+      if (chatroom[chatroomId].seller_id !== user.id) {
+        const id = dispatch(get_user(chatroom[chatroomId].seller_id));
+        setPersonB(user2);
+      } else {
+        const id = dispatch(get_user(chatroom[chatroomId].buyer_id));
+        setPersonB(user2);
+      }
     }
   }, [personB, user2, chatroom]);
   // useEffect(() => {
@@ -117,7 +123,7 @@ const Chat = () => {
       <div>
         <div className="border-solid border-4 border-green-500">
           <h1 className="font-bold">Messages</h1>
-          {messagesState && personB && user2.name ? (
+          {messagesState && user2.name ? (
             Object.values(messagesState).map((message, ind) => (
               <div key={ind}>{`${
                 message.sender_id === user.id ? user.name : user2.name

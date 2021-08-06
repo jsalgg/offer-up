@@ -19,7 +19,7 @@ const getAllUser = (users) => ({
   type: GET_ALL_USER,
   payload: users[0],
 });
-const initialState = { user: null };
+const initialState = { user: null, user_2: null, users: null };
 
 export const authenticate = () => async (dispatch) => {
   const response = await fetch("/api/auth/", {
