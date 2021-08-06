@@ -13,8 +13,8 @@ const Chat = () => {
 
   const [chatInput, setChatInput] = useState("");
   const user = useSelector((state) => state.session.user);
+  let user2 = useSelector((state) => state.session.user_2);
   const chatroom = useSelector((state) => state.chat.chatroom);
-  const user2 = useSelector((state) => state.session.user_2);
   const [personB, setPersonB] = useState("");
   const [mess, setMess] = useState("");
   let dispatch = useDispatch();
@@ -39,6 +39,18 @@ const Chat = () => {
     }
   }, [chatroom, user, chatroomId, personB]);
 
+  useEffect(() => {
+    if (chatroom && user) {
+      if (chatroom[chatroomId].seller_id !== user.id) {
+        const id = dispatch(get_user(chatroom[chatroomId].seller_id));
+        setPersonB(user2);
+      } else {
+        const id = dispatch(get_user(chatroom[chatroomId].buyer_id));
+        setPersonB(user2);
+      }
+    }
+  }, []);
+
   const messagesState = useSelector((state) => state.chat.message);
 
   useEffect(() => {
@@ -58,7 +70,6 @@ const Chat = () => {
     if (user2) {
       setPersonB(user2);
     }
-    console.log(personB);
   }, [personB, user2, chatroom]);
   // useEffect(() => {
   //   dispatch(readMessages(chatroomId));
@@ -100,6 +111,7 @@ const Chat = () => {
 
     setChatInput("");
   };
+
   return (
     user && (
       <div>
