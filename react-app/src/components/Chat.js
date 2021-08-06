@@ -105,7 +105,7 @@ const Chat = () => {
       <div>
         <div className="border-solid border-4 border-green-500">
           <h1 className="font-bold">Messages</h1>
-          {messagesState && personB && user2 ? (
+          {messagesState && personB && user2.name ? (
             Object.values(messagesState).map((message, ind) => (
               <div key={ind}>{`${
                 message.sender_id === user.id ? user.name : user2.name
