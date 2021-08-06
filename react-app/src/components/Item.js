@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 import { getItem } from "../store/item";
 import { readChatRoom } from "../store/chat";
+import { get_user } from "../store/session";
 
 export default function Item({ item }) {
   const dispatch = useDispatch();
@@ -26,6 +27,7 @@ export default function Item({ item }) {
     history.push(`/item/${id}/edit`);
   };
   const toChat = (itemId, sellerId, buyerId) => async () => {
+    await dispatch(get_user(sellerId));
     await dispatch(readChatRoom(itemId, sellerId, buyerId));
     history.push(`/item/${id}/chat`);
   };
